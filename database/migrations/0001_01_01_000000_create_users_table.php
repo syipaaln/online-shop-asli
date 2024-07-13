@@ -18,7 +18,12 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('role');
+            $table->string('no_hp')->nullable();
             $table->string('alamat')->nullable();
+            $table->string('kecamatan')->nullable();
+            $table->string('kabupaten')->nullable();
+            $table->string('provinsi')->nullable();
+            $table->string('kode_pos')->nullable();
             $table->string('foto')->nullable();
             $table->rememberToken();
             $table->timestamps();

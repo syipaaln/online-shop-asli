@@ -25,7 +25,12 @@ class UserController extends Controller
 
         $user->name = $request->input('name');
         $user->email = $request->input('email');
+        $user->no_hp = $request->input('no_hp');
         $user->alamat = $request->input('alamat');
+        $user->kecamatan = $request->input('kecamatan');
+        $user->kabupaten = $request->input('kabupaten');
+        $user->provinsi = $request->input('provinsi');
+        $user->kode_pos = $request->input('kode_pos');
 
         if ($request->hasFile('foto')) {
             // Menghapus foto lama jika ada

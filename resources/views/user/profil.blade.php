@@ -34,8 +34,33 @@
                         </div>
 
                         <div class="form-group mb-3">
+                            <label for="no_hp">Nomor HP</label>
+                            <input type="text" name="no_hp" class="form-control" id="no_hp" value="{{ $user->no_hp }}" required>
+                        </div>
+
+                        <div class="form-group mb-3">
                             <label for="alamat">Alamat</label>
                             <textarea name="alamat" class="form-control" id="alamat" rows="3" required>{{ $user->alamat }}</textarea>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="kecamatan">Kecamatan</label>
+                            <input type="text" name="kecamatan" class="form-control" id="kecamatan" value="{{ $user->kecamatan }}" required>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="kabupaten">Kabupaten</label>
+                            <input type="text" name="kabupaten" class="form-control" id="kabupaten" value="{{ $user->kabupaten }}" required>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="provinsi">Provinsi</label>
+                            <input type="text" name="provinsi" class="form-control" id="provinsi" value="{{ $user->provinsi }}" required>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="kode_pos">Kode POS</label>
+                            <input type="text" name="kode_pos" class="form-control" id="kode_pos" value="{{ $user->kode_pos }}" required>
                         </div>
 
                         <div class="form-group mb-3">

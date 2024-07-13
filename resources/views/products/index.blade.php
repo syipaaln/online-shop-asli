@@ -25,13 +25,14 @@
                     @endif
                 @else
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <i class="bi bi-person fs-5"></i>
                         {{ Auth::user()->name }}
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
-                                            document.getElementById('logout-form').submit();">
+                            document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
                         </a>
 
@@ -44,7 +45,7 @@
         </div>
     </nav>
     <div class="container mt-5">
-        <div class="card border-0 shadow-sm rounded text-center py-5 mb-2">
+        <div class="card border-0 shadow-sm rounded text-center bg-white py-5 mb-2">
             <div class="card-body">
                 ini banner
             </div>
@@ -52,59 +53,13 @@
         <div class="d-flex justify-content-between align-items-center my-5">
             <h5>PRODUK</h5>
             <form class="search-form" style="max-width: 200px;">
-                <input class="form-control" type="search" placeholder="Cari Produk" aria-label="Search">
+                <input class="form-control bg-white" type="search" placeholder="Cari Produk" aria-label="Search">
             </form>
         </div>
-        {{-- <div class="row">
-            <div class="col-md-12">
-                <div class="card border-0 shadow-sm rounded">
-                    <div class="card-body">
-                        <a href="{{ route('products.create') }}" class="btn btn-md btn-success mb-3">ADD PRODUCT</a>
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th scope="col">IMAGE</th>
-                                    <th scope="col">TITLE</th>
-                                    <th scope="col">PRICE</th>
-                                    <th scope="col">STOCK</th>
-                                    <th scope="col" style="width: 20%">ACTIONS</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse ($products as $product)
-                                    <tr>
-                                        <td class="text-center">
-                                            <img src="{{ asset('/storage/products/'.$product->image) }}" class="rounded" style="width: 150px">
-                                        </td>
-                                        <td>{{ $product->title }}</td>
-                                        <td>{{ "Rp " . number_format($product->price,2,',','.') }}</td>
-                                        <td>{{ $product->stock }}</td>
-                                        <td class="text-center">
-                                            <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('products.destroy', $product->id) }}" method="POST">
-                                                <a href="{{ route('products.show', $product->id) }}" class="btn btn-sm btn-dark">SHOW</a>
-                                                <a href="{{ route('products.edit', $product->id) }}" class="btn btn-sm btn-primary">EDIT</a>
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @empty
-                                    <div class="alert alert-danger">
-                                        Data Products belum Tersedia.
-                                    </div>
-                                @endforelse
-                            </tbody>
-                        </table>
-                        {{ $products->links() }}
-                    </div>
-                </div>
-            </div>
-        </div> --}}
         <div class="row mt-3">
             @forelse ($products as $product)
                 <div class="col-md-4 col-lg-3 col-xl-2 mb-4">
-                    <div class="card product-card h-100">
+                    <div class="card product-card bg-white h-100">
                         <img src="{{ asset('/storage/products/'.$product->image) }}" class="card-img-top" alt="Product Image">
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title fs-6 mb-4">{{ $product->title }}</h5>

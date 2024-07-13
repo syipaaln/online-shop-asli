@@ -54,7 +54,7 @@ class LoginController extends Controller
             if (auth()->user()->role == 'admin') {
                 return redirect()->route('admin.home');
             }else if (auth()->user()->role == 'user') {
-                return redirect()->route('user.home');
+                return redirect()->route('userProduct');
             }else{
                 return redirect()->route('home');
             }
