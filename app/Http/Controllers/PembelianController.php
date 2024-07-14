@@ -129,8 +129,8 @@ class PembelianController extends Controller
         // Inisialisasi array kosong $payments
         $payments = [
             ['type' => 'BCA', 'norek' => '431010101'],
-            ['type' => 'BRI', 'norek' => '123456789'],
-            ['type' => 'Mandiri', 'norek' => '987654321'],
+            ['type' => 'BNI', 'norek' => '123456789'],
+            ['type' => 'BRI', 'norek' => '987654321'],
         ];
         
         return view('user.payment', compact('checkoutsWithProducts', 'users', 'payments', 'total'));
