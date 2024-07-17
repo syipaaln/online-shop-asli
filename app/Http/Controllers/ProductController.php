@@ -39,6 +39,16 @@ class ProductController extends Controller
         //render view with product
         return view('superadmin.productEdit', compact('product'));
     }
+
+    public function superadminSearch(Request $request)
+    {
+        $query = $request->input('query');
+        $products = Product::where('title', 'LIKE', "%{$query}%")
+                            ->orWhere('description', 'LIKE', "%{$query}%")
+                            ->get();
+
+        return view('superadmin.product', compact('products'));
+    }
  
     public function adminProduct(){
         session(['previous_list_url' => url()->current()]); // untuk menyimpan url list product ke dalam session
@@ -57,6 +67,16 @@ class ProductController extends Controller
 
         //render view with product
         return view('admin.productEdit', compact('product'));
+    }
+
+    public function adminSearch(Request $request)
+    {
+        $query = $request->input('query');
+        $products = Product::where('title', 'LIKE', "%{$query}%")
+                            ->orWhere('description', 'LIKE', "%{$query}%")
+                            ->get();
+
+        return view('admin.product', compact('products'));
     }
 
     /**

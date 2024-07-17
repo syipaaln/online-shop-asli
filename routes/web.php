@@ -13,7 +13,7 @@ Route::get('/', [ProductController::class, 'index'])->name('index');
 
 //route resource for products
 Route::resource('products', \App\Http\Controllers\ProductController::class);
-Route::get('/search', [ProductController::class, 'search'])->name('search');
+Route::get('user/search', [ProductController::class, 'search'])->name('search');
 
 Auth::routes();
 
@@ -29,6 +29,7 @@ Route::middleware(['auth', 'user-access:superadmin'])->group(function () {
     Route::get('/manage-product/create', [ProductController::class, 'superadminProductCreate'])->name('superadminProductCreate');
     Route::get('/manage-product/edit/{user}', [ProductController::class, 'superadminProductEdit'])->name('superadminProductEdit');
     Route::get('/sales-report', [PembelianController::class, 'salesReport'])->name('superadmin.salesReport');
+    Route::get('/search', [ProductController::class, 'superadminSearch'])->name('superadminSearch');
 });
 
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
@@ -37,6 +38,7 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('/admin/manage-product/create', [ProductController::class, 'adminProductCreate'])->name('adminProductCreate');
     Route::get('/admin/manage-product/edit/{user}', [ProductController::class, 'adminProductEdit'])->name('adminProductEdit');
     Route::get('/admin/sales-report', [PembelianController::class, 'salesReportAdmin'])->name('admin.salesReport');
+    Route::get('/admin/search', [ProductController::class, 'adminSearch'])->name('adminSearch');
 });
 
 Route::middleware(['auth', 'user-access:user'])->group(function () {
