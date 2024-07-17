@@ -81,6 +81,17 @@ class ProductController extends Controller
         //render view with products
         return view('user.products', compact('products'));
     }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $products = Product::where('title', 'LIKE', "%{$query}%")
+                            ->orWhere('description', 'LIKE', "%{$query}%")
+                            ->get();
+
+        return view('user.products', compact('products'));
+    }
+
     /**
      * create
      *

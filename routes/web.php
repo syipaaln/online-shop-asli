@@ -13,6 +13,7 @@ Route::get('/', [ProductController::class, 'index'])->name('index');
 
 //route resource for products
 Route::resource('products', \App\Http\Controllers\ProductController::class);
+Route::get('/search', [ProductController::class, 'search'])->name('search');
 
 Auth::routes();
 

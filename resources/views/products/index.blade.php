@@ -44,22 +44,22 @@
             </div>
         </div>
     </nav>
-    <div class="container mt-5">
+    <div class="container mt-3">
         <div class="card border-0 shadow-sm rounded text-center bg-white py-5 mb-2">
             <div class="card-body">
                 ini banner
             </div>
         </div>
-        <div class="d-flex justify-content-between align-items-center my-5">
-            <h5>PRODUK</h5>
-            <form class="search-form" style="max-width: 200px;">
-                <input class="form-control bg-white" type="search" placeholder="Cari Produk" aria-label="Search">
+        <div class="d-flex justify-content-between align-items-center mt-5 mb-3">
+            <h5 class="fw-bold">PRODUK</h5>
+            <form class="search-form w-25" action="{{ route('search') }}" method="GET">
+                <input class="form-control bg-white border-0 shadow-sm" type="search" name="query" placeholder="Cari Produk" aria-label="Search">
             </form>
         </div>
         <div class="row mt-3">
             @forelse ($products as $product)
                 <div class="col-md-4 col-lg-3 col-xl-2 mb-4">
-                    <div class="card product-card bg-white h-100">
+                    <div class="card product-card bg-white h-100 border-0 shadow-sm">
                         <img src="{{ asset('/storage/products/'.$product->image) }}" class="card-img-top" alt="Product Image">
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title fs-6 mb-4">{{ $product->title }}</h5>
