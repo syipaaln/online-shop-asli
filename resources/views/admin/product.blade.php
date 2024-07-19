@@ -11,6 +11,9 @@
                     </div>
                   @endif
                 </div>
+                <form class="search-form w-full mb-5" action="{{ route('adminSearch') }}" method="GET">
+                    <input class="form-control bg-white border-0 shadow-sm" type="search" name="query" placeholder="Cari Produk" aria-label="Search">
+                </form>
                 <div class="card border-0 shadow-sm rounded">
                     <div class="card-body">
                         <a href="{{ route('adminProductCreate') }}" class="btn btn-md btn-success mb-3">ADD PRODUCT</a> 

@@ -11,7 +11,7 @@
         <div class="card p-4" style="width: 100%; max-width: 400px; border: none;">
             <div class="text-left mb-4">
                 <a href="/" style="cursor: pointer;">
-                    <img src="{{ asset('images/logo.jpg') }}" alt="Logo TB DARMA" class="d-block mx-auto w-50">
+                    <img src="{{ asset('images/logo.png') }}" alt="Logo TB DARMA" class="d-block mx-auto w-50">
                 </a>
             </div>
 

@@ -79,7 +79,7 @@
     <nav class="navbar bg-white navbar-expand fixed-bottom">
         <ul class="navbar-nav nav-justified w-100">
             <li class="nav-item col-6 d-flex justify-content-center align-items-center">
-                <span>Total Semua: Rp {{ number_format($total, 2, ',', '.') }}</span>
+                <span>Total Semua: <span class="fw-bold">Rp {{ number_format($total, 2, ',', '.') }}</span></span>
             </li>
             <li class="nav-item col-6 d-flex justify-content-center align-items-center">
                 <a href="{{ route('userPayment') }}" class="btn" style="background-color: #6F9CF3; color: #fff;">Lanjut Pembayaran</a>

@@ -22,7 +22,7 @@
     <div id="app">
         <nav class="navbar bg-white">
             <div class="container">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="/">
                     <img src="{{ asset('images/logo.png') }}" alt="TB Darma" width="150" height="24">
                 </a>
                 <div class="d-flex">
@@ -36,6 +36,14 @@
                         @endif
                     @else
                         <a class="nav-link" href="{{ route('userCheckout')}}"> <i class="bi bi-cart fs-5 me-4"></i> </a>
+                        {{-- <a class="nav-link position-relative" href="{{ route('userCheckout') }}"> 
+                            <i class="bi bi-cart fs-5 me-4"></i>
+                            @if($cartCount > 0)
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                    {{ $cartCount }}
+                                </span>
+                            @endif
+                        </a> --}}
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             <i class="bi bi-person fs-5"></i>
                             {{ Auth::user()->name }}

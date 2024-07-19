@@ -64,7 +64,7 @@
                                 <div class="card-body">
                                         <div class="d-flex justify-content-around">
                                             @foreach ($payments as $payment)
-                                                <label class="payment-option form-check-label text-center" style="cursor: pointer; width: 100px;">
+                                                <label class="payment-option form-check-label text-center" style="cursor: pointer; width: 130px;">
                                                     <input type="radio" name="payment" class="d-none" value="{{ $payment['type'] }}">
                                                     <div class="bg-light rounded p-4">
                                                         <img src="{{ asset('images/' . strtolower($payment['type']) . '.png') }}" alt="{{ $payment['type'] }}" class="img-fluid" style="max-width: 100%;">
@@ -111,10 +111,7 @@
                     <div class="card border-0 bg-white my-3 rounded">
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center">
-                                <div class="d-flex">
-                                    <div>Total Semua: </div>
-                                    <div class="fw-bold">Rp{{ number_format($total, 2, ',', '.') }}</div>
-                                </div>
+                                <span>Total Semua: <span class="fw-bold">Rp {{ number_format($total, 2, ',', '.') }}</span></span>
                                 <button type="submit" class="btn btn-primary w-20">Bayar Sekarang</button>
                             </div>
                         </div>
