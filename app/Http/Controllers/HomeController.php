@@ -41,6 +41,16 @@ class homecontroller extends controller
         return view('superadmin.manageUser', compact('users'));
     }
 
+    public function superadminSearchUser(Request $request)
+    {
+        $query = $request->input('query');
+        $users = User::where('name', 'LIKE', "%{$query}%")
+                            ->orWhere('alamat', 'LIKE', "%{$query}%")
+                            ->get();
+
+        return view('superadmin.manageUser', compact('users'));
+    }
+
     public function manageUserCreate() {
         return view('superadmin.manageUserCreate');
     }

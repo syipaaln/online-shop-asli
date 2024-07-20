@@ -35,7 +35,14 @@
                             <a class="btn btn-primary" href="{{ route('login') }}">{{ __('Login') }}</a>
                         @endif
                     @else
-                        <a class="nav-link" href="{{ route('userCheckout')}}"> <i class="bi bi-cart fs-5 me-4"></i> </a>
+                        <div class="relative">
+                            <a class="nav-link" href="{{ route('userCheckout')}}">
+                                <i class="bi bi-cart fs-5 me-4">
+                                    <div class="absolute top-0 right-0"></div>
+                                </i>
+                            </a>
+                        </div>
+                        
                         {{-- <a class="nav-link position-relative" href="{{ route('userCheckout') }}"> 
                             <i class="bi bi-cart fs-5 me-4"></i>
                             @if($cartCount > 0)
