@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use app\models\user;
+use app\models\Checkout;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 class homecontroller extends controller
@@ -33,7 +34,13 @@ class homecontroller extends controller
      */
     public function index()
     {
-        return view('home');
+        $cartCount = 0;
+        if (Auth::check()) {
+            $userId = Auth::id();
+            $cartCount = Checkout::where('user_id', $userId)->sum('quantity');
+        }
+
+        return view('home', compact('cartCount'));
     }
     
     public function manageUser() {
