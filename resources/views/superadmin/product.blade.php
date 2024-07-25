@@ -28,6 +28,11 @@
                 </div>
               @endif
             </div>
+            <div class="row mb-3">
+              <div class="col-md-12">
+                <a href="{{ route('superadminProductCreate') }}" class="btn btn-primary">Create New Product</a>
+              </div>
+            </div>
             <div class="card border-0 shadow-sm rounded" style="border-radius: 5px;">
                 <div class="card-body" style="background-color: white; border-radius: 5px;">
                   <table class="table custom-table table-default">

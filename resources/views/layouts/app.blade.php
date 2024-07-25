@@ -20,7 +20,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-lg navbar-light bg-white px-5">
+        <nav class="navbar navbar-expand-lg bg-white px-5">
             <a class="navbar-brand" href="/">
                 <img src="{{ asset('images/logo.png') }}" alt="TB Darma" width="150" height="24">
             </a>
