@@ -20,7 +20,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-lg bg-white px-5">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white px-5">
             <a class="navbar-brand" href="/">
                 <img src="{{ asset('images/logo.png') }}" alt="TB Darma" width="150" height="24">
             </a>
@@ -30,16 +30,16 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('home') }}">Dashboard</a>
+                        <a class="nav-link" href="{{ route('admin.home') }}">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('superadminProduct') }}">Kelola Produk</a>
+                        <a class="nav-link" href="{{ route('adminProduct') }}">Kelola Produk</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('manageUser') }}">Kelola User</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('superadmin.salesReport') }}">Laporan Pembelian</a>
+                        <a class="nav-link" href="{{ route('admin.salesReport') }}">Laporan Pembelian</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav">

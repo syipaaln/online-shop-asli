@@ -29,7 +29,8 @@ Route::middleware(['auth', 'user-access:superadmin'])->group(function () {
     Route::get('/manage-product/create', [ProductController::class, 'superadminProductCreate'])->name('superadminProductCreate');
     Route::get('/manage-product/edit/{user}', [ProductController::class, 'superadminProductEdit'])->name('superadminProductEdit');
     Route::get('/sales-report', [PembelianController::class, 'salesReport'])->name('superadmin.salesReport');
-    Route::get('/search', [ProductController::class, 'superadminSearch'])->name('superadminSearch');
+    Route::get('/search-product', [ProductController::class, 'superadminSearch'])->name('superadminSearch');
+    Route::get('/search-user', [HomeController::class, 'superadminSearchUser'])->name('superadminSearchUser');
 });
 
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
