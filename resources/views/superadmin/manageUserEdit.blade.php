@@ -5,64 +5,56 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card border-0 shadow-sm rounded">
-                    <div class="card-body">
+                    <div class="card-header bg-primary text-white">EDIT USER</div>
+                    <div class="card-body bg-white">
                         <form action="{{ route('manageUserUpdate', ['user' => $user->id]) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
 
-                            <div class="form-group mb-3">
-                                <label class="font-weight-bold">NAMA</label>
+                            <div class="mb-3">
+                                <label for="name" class="form-label font-weight-bold">NAMA</label>
                                 <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name', $user->name) }}" placeholder="Masukkan Nama">
-                            
-                                <!-- error message untuk name -->
                                 @error('name')
-                                    <div class="alert alert-danger mt-2">
-                                        {{ $message }}
-                                    </div>
+                                    <div class="alert alert-danger mt-2">{{ $message }}</div>
                                 @enderror
                             </div>
 
-                            <div class="form-group mb-3">
-                                <label class="font-weight-bold">EMAIL</label>
-                                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email', $user->email) }}" placeholder="Masukkan email" />
-                            
-                                <!-- error message untuk email -->
+                            <div class="mb-3">
+                                <label for="email" class="form-label font-weight-bold">EMAIL</label>
+                                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email', $user->email) }}" placeholder="Masukkan email">
                                 @error('email')
-                                    <div class="alert alert-danger mt-2">
-                                        {{ $message }}
-                                    </div>
+                                    <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="alamat" class="form-label font-weight-bold">ALAMAT</label>
+                                <input type="text" class="form-control @error('alamat') is-invalid @enderror" name="alamat" value="{{ old('alamat', $user->alamat) }}" placeholder="Masukkan alamat">
+                                @error('alamat')
+                                    <div class="alert alert-danger mt-2">{{ $message }}</div>
                                 @enderror
                             </div>
 
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="form-group mb-3">
-                                        <label class="font-weight-bold">ROLE</label>
-                                        <div>
-                                            <select name="role" id="role" required>
-                                                <option value="user" {{ $user->role == 'user' ? 'selected' : '' }}>User</option>
-                                                <option value="admin" {{ $user->role == 'admin' ? 'selected' : '' }}>Admin</option>
-                                                <option value="superadmin" {{ $user->role == 'superadmin' ? 'selected' : '' }}>Superadmin</option>
-                                            </select>
-                                        </div>
-                                        <!-- error message untuk role -->
+                                    <div class="mb-3">
+                                        <label for="role" class="form-label font-weight-bold">ROLE</label>
+                                        <select class="form-select" name="role" id="role" required>
+                                            <option value="user" {{ $user->role == 'user' ? 'selected' : '' }}>User</option>
+                                            <option value="admin" {{ $user->role == 'admin' ? 'selected' : '' }}>Admin</option>
+                                            <option value="superadmin" {{ $user->role == 'superadmin' ? 'selected' : '' }}>Superadmin</option>
+                                        </select>
                                         @error('role')
-                                            <div class="alert alert-danger mt-2">
-                                                {{ $message }}
-                                            </div>
+                                            <div class="alert alert-danger mt-2">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-group mb-3">
-                                        <label class="font-weight-bold">PASSWORD</label>
+                                    <div class="mb-3">
+                                        <label for="password" class="form-label font-weight-bold">PASSWORD</label>
                                         <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Masukkan password Akun">
-                                    
-                                        <!-- error message untuk password -->
                                         @error('password')
-                                            <div class="alert alert-danger mt-2">
-                                                {{ $message }}
-                                            </div>
+                                            <div class="alert alert-danger mt-2">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>

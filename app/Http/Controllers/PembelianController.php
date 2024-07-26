@@ -24,6 +24,12 @@ class PembelianController extends Controller
     {
         $userId = Auth::id();
 
+        $cartCount = 0;
+        if (Auth::check()) {
+            $userId = Auth::id();
+            $cartCount = Checkout::where('user_id', $userId)->sum('quantity');
+        }
+
         // Ambil semua checkout berdasarkan user_id
         $checkouts = Checkout::where('user_id', $userId)->get();
 
@@ -38,7 +44,8 @@ class PembelianController extends Controller
             $checkout->product = $products->firstWhere('id', $checkout->product_id);
             return $checkout;
         });
-        return view('user.checkout', compact('checkoutsWithProducts'));
+        // dd($cartCount);
+        return view('user.checkout', compact('checkoutsWithProducts', 'cartCount'));
     }
 
     public function addToCheckout(Request $request, Product $product)
@@ -87,10 +94,17 @@ class PembelianController extends Controller
 
         return redirect()->route('userCheckout')->with(['success' => 'Data Berhasil Dihapus']); 
     }
+
     public function paymentUser () 
     {
         $userId = Auth::id();
         $users = Auth::user();
+
+        $cartCount = 0;
+        if (Auth::check()) {
+            $userId = Auth::id();
+            $cartCount = Checkout::where('user_id', $userId)->sum('quantity');
+        }
     
         // Ambil semua checkout berdasarkan user_id
         $checkouts = Checkout::where('user_id', $userId)->get();
@@ -133,14 +147,18 @@ class PembelianController extends Controller
             ['type' => 'BRI', 'norek' => '987654321'],
         ];
         
-        return view('user.payment', compact('checkoutsWithProducts', 'users', 'payments', 'total'));
+        return view('user.payment', compact('checkoutsWithProducts', 'users', 'payments', 'total', 'cartCount'));
     }
 
     public function paymentBill() {
-        $userId = Auth::id();
+        $cartCount = 0;
+        if (Auth::check()) {
+            $userId = Auth::id();
+            $cartCount = Checkout::where('user_id', $userId)->sum('quantity');
+        }
         $pembelian = Pembelian::where('user_id', $userId)->get();
         $total_bayar = $pembelian->sum('total_harga');
-        return view('user.paymentBill', compact('pembelian', 'total_bayar'));
+        return view('user.paymentBill', compact('pembelian', 'total_bayar', 'cartCount'));
     }
 
     public function paymentProcess(Request $request) 

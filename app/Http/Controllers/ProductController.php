@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 //import model product
 use App\Models\Product; 
 
+//import model Checkout
+use App\Models\Checkout; 
+
 //import return type View
 use Illuminate\View\View;
 
@@ -89,6 +92,8 @@ class ProductController extends Controller
         //get all products
         $products = Product::latest()->paginate(10);
 
+        
+
         //render view with products
         return view('products.index', compact('products'));
     }
@@ -98,8 +103,14 @@ class ProductController extends Controller
         //get all products
         $products = Product::latest()->paginate(10);
 
+        $cartCount = 0;
+        if (Auth::check()) {
+            $userId = Auth::id();
+            $cartCount = Checkout::where('user_id', $userId)->sum('quantity');
+        }
+
         //render view with products
-        return view('user.products', compact('products'));
+        return view('user.products', compact('products', 'cartCount'));
     }
 
     public function search(Request $request)
