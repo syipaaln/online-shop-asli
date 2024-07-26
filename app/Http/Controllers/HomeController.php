@@ -101,9 +101,76 @@ class homecontroller extends controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */ 
-    public function adminHome()
+    public function adminManageUser()
     {
-        return view('adminHome');
+        $users = User::all();
+        return view('admin.manageUser', compact('users'));
+    }
+
+    public function adminSearchUser(Request $request)
+    {
+        $query = $request->input('query');
+        $users = User::where('name', 'LIKE', "%{$query}%")
+                     ->orWhere('alamat', 'LIKE', "%{$query}%")
+                     ->get();
+    
+        return view('admin.manageUser', compact('users'));
+    }
+
+    public function adminManageUserCreate() {
+        return view('admin.manageUserCreate');
+    }
+
+    public function adminRegistUser(Request $request)
+    {
+        // Validasi data pengguna
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|unique:users|max:255',
+            'password' => 'required|string|min:8',
+            'role' => 'required|string|in:user,admin,superadmin',
+        ]);
+
+        // Jika validasi gagal, kembali ke halaman pendaftaran dengan pesan kesalahan
+        if ($validator->fails()) {
+            return redirect('/admin/manage-user/create')
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+        // Buat pengguna baru jika validasi berhasil
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role' => $request->role,
+        ]);
+
+        // Redirect pengguna setelah pendaftaran
+        return redirect('/admin/manage-user');
+    }
+
+    // public function manageUserDelete(User $user) {
+    //     $user->delete();
+    //     return redirect()->back()->with('success', 'Berhasil Hapus User');
+    // }
+
+    public function adminManageUserUpdate(Request $request, User $user) {
+         $request->validate([
+             'name' => 'required|string|max:255',
+             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
+             'password' => 'required|string|min:8',
+             'role' => 'required|string|in:user,admin,superadmin', // Tambahkan validasi untuk bidang lainnya
+         ]);
+    
+         $user->update($request->all());
+    
+         return redirect('/admin/manage-user')->with('success', 'Berhasil Ubah User');
+    }
+
+    public function adminManageUserEdit(User $user)
+    {
+         return view('admin.manageUserEdit', compact('user'));
     }
   
     /**
