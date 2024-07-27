@@ -35,18 +35,12 @@ Route::middleware(['auth', 'user-access:superadmin'])->group(function () {
 
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('/admin/home', [HomeController::class, 'adminHome'])->name('admin.home');
-    Route::get('/admin/manage-user', [HomeController::class, 'adminManageUser'])->name('adminManageUser');
-    Route::get('/admin/manage-user/create', [HomeController::class, 'adminManageUserCreate'])->name('adminManageUserCreate');
-    Route::post('/admin/regist-user', [HomeController::class, 'adminRegistUser'])->name('adminRegistUser');
-    Route::get('/admin/manage-user/edit/{user}', [HomeController::class, 'adminManageUserEdit'])->name('adminManageUserEdit');
-    Route::delete('/delete-user/{user}', [HomeController::class, 'manageUserDelete'])->name('manageUserDelete');
-    Route::put('/admin/update-user{user}', [HomeController::class, 'adminManageUserUpdate'])->name('adminManageUserUpdate');
+    
     Route::get('/admin/manage-product', [ProductController::class, 'adminProduct'])->name('adminProduct');
     Route::get('/admin/manage-product/create', [ProductController::class, 'adminProductCreate'])->name('adminProductCreate');
     Route::get('/admin/manage-product/edit/{user}', [ProductController::class, 'adminProductEdit'])->name('adminProductEdit');
     Route::get('/admin/sales-report', [PembelianController::class, 'salesReport'])->name('admin.salesReport');
-    // Route::get('/search-product', [ProductController::class, 'adminSearch'])->name('adminSearch');
-    Route::get('/admin/search-user', [HomeController::class, 'adminSearchUser'])->name('adminSearchUser');
+    Route::get('/search-product', [ProductController::class, 'adminSearch'])->name('adminSearch');
 });
 
 

@@ -32,17 +32,6 @@ class UserController extends Controller
         $user->provinsi = $request->input('provinsi');
         $user->kode_pos = $request->input('kode_pos');
 
-        if ($request->hasFile('foto')) {
-            // Menghapus foto lama jika ada
-            if ($user->foto) {
-                Storage::delete('public/user/' . $user->foto);
-            }
-
-            // Menyimpan foto baru
-            $path = $request->file('foto')->store('user', 'public');
-            $user->foto = $path;
-        }
-
         $user->save();
 
         return redirect()->route('profil')->with('success', 'Data pengguna berhasil diperbarui');
