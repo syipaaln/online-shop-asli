@@ -24,7 +24,6 @@ return new class extends Migration
             $table->string('kabupaten')->nullable();
             $table->string('provinsi')->nullable();
             $table->string('kode_pos')->nullable();
-            $table->string('foto')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

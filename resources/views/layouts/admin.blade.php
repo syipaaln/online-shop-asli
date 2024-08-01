@@ -36,9 +36,6 @@
                         <a class="nav-link" href="{{ route('adminProduct') }}">Kelola Produk</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('manageUser') }}">Kelola User</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.salesReport') }}">Laporan Pembelian</a>
                     </li>
                 </ul>

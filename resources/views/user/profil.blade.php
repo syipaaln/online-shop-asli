@@ -63,12 +63,6 @@
                             <input type="text" name="kode_pos" class="form-control" id="kode_pos" value="{{ $user->kode_pos }}" required>
                         </div>
 
-                        <div class="form-group mb-3">
-                            <label for="foto">Upload Foto Profil</label>
-                            <img id="imagePreview" src="{{ $user->foto ? asset('storage/' . $user->foto) : '' }}" alt="Image Preview" style="display: {{ $user->foto ? 'block' : 'none' }}; width: 200px; margin-top: 10px;">
-                            <input type="file" name="foto" class="form-control-file mt-2" id="foto" onchange="previewImage(event)">
-                        </div>
-
                         <button type="submit" class="btn btn-primary">Perbarui</button>
                     </form>
                 </div>
@@ -77,17 +71,4 @@
     </div>
 </div>
 
-<script>
-function previewImage(event) {
-    var input = event.target;
-    var reader = new FileReader();
-    reader.onload = function(){
-        var dataURL = reader.result;
-        var imagePreview = document.getElementById('imagePreview');
-        imagePreview.src = dataURL;
-        imagePreview.style.display = 'block';
-    };
-    reader.readAsDataURL(input.files[0]);
-}
-</script>
 @endsection
