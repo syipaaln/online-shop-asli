@@ -18,6 +18,7 @@
         }
 
         .card-custom {
+            background-color: white;
             padding: 1rem;
             margin: 0.5rem;
             width: calc(100% - 1rem);
