@@ -34,7 +34,7 @@
             <div class="col-md-3">
                 <div class="card text-center card-custom">
                     <div class="card-body">
-                        <h2 class="card-title text-primary">120</h2>
+                        <h2 class="card-title text-primary">{{ $salesToday }}</h2>
                         <p class="card-text">Penjualan Hari Ini</p>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
             <div class="col-md-3">
                 <div class="card text-center card-custom">
                     <div class="card-body">
-                        <h2 class="card-title text-primary">120</h2>
+                        <h2 class="card-title text-primary">{{ $usersToday }}</h2>
                         <p class="card-text">User Daftar Hari Ini</p>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
             <div class="col-md-3">
                 <div class="card text-center card-custom">
                     <div class="card-body">
-                        <h2 class="card-title text-primary">120</h2>
+                        <h2 class="card-title text-primary">{{ $salesThisMonth }}</h2>
                         <p class="card-text">Penjualan Bulan Ini</p>
                     </div>
                 </div>
@@ -58,19 +58,19 @@
             <div class="col-md-3">
                 <div class="card text-center card-custom">
                     <div class="card-body">
-                        <h2 class="card-title text-primary">120</h2>
+                        <h2 class="card-title text-primary">{{ $usersThisMonth }}</h2>
                         <p class="card-text">User Daftar Bulan Ini</p>
                     </div>
                 </div>
             </div>
         </div>
-
+    
         <div class="row mt-4">
             <div class="col-md-6">
                 <div class="card text-center card-custom">
                     <div class="card-body">
                         <p class="card-text">Total Pendapatan Hari Ini</p>
-                        <h2 class="card-title text-primary">Rp24.000.000,00-</h2>
+                        <h2 class="card-title text-primary">Rp{{ number_format($totalRevenueToday, 2, ',', '.') }}</h2>
                     </div>
                 </div>
             </div>
@@ -78,7 +78,7 @@
                 <div class="card text-center card-custom">
                     <div class="card-body">
                         <p class="card-text">Total Pendapatan Bulan Ini</p>
-                        <h2 class="card-title text-primary">Rp24.000.000,00-</h2>
+                        <h2 class="card-title text-primary">Rp{{ number_format($totalRevenueThisMonth, 2, ',', '.') }}</h2>
                     </div>
                 </div>
             </div>

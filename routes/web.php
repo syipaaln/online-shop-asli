@@ -35,12 +35,11 @@ Route::middleware(['auth', 'user-access:superadmin'])->group(function () {
 
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('/admin/home', [HomeController::class, 'adminHome'])->name('admin.home');
-    
     Route::get('/admin/manage-product', [ProductController::class, 'adminProduct'])->name('adminProduct');
     Route::get('/admin/manage-product/create', [ProductController::class, 'adminProductCreate'])->name('adminProductCreate');
     Route::get('/admin/manage-product/edit/{user}', [ProductController::class, 'adminProductEdit'])->name('adminProductEdit');
     Route::get('/admin/sales-report', [PembelianController::class, 'salesReport'])->name('admin.salesReport');
-    Route::get('/search-product', [ProductController::class, 'adminSearch'])->name('adminSearch');
+    Route::get('/admin/search-product', [ProductController::class, 'adminSearch'])->name('adminSearch');
 });
 
 
