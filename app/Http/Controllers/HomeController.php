@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use app\models\user;
-use app\models\Checkout;
+use App\Models\user;
+use App\Models\Checkout;
+use App\Models\Pembelian;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 class homecontroller extends controller
@@ -15,10 +17,38 @@ class homecontroller extends controller
      * @return void
      */
     public function dashboard() {
-        return view('home');
+        $today = Carbon::today();
+        $thisMonth = Carbon::now()->month;
+
+        $salesToday = Pembelian::whereDate('created_at', $today)->count();
+        $usersToday = User::whereDate('created_at', $today)->count();
+        $salesThisMonth = Pembelian::whereMonth('created_at', $thisMonth)->count();
+        $usersThisMonth = User::whereMonth('created_at', $thisMonth)->count();
+
+        $totalRevenueToday = Pembelian::whereDate('created_at', $today)->sum('total_harga');
+        $totalRevenueThisMonth = Pembelian::whereMonth('created_at', $thisMonth)->sum('total_harga');
+
+        return view('home', compact(
+            'salesToday', 'usersToday', 'salesThisMonth', 'usersThisMonth',
+            'totalRevenueToday', 'totalRevenueThisMonth'
+        ));
     }
     public function adminHome() {
-        return view('adminHome');
+        $today = Carbon::today();
+        $thisMonth = Carbon::now()->month;
+
+        $salesToday = Pembelian::whereDate('created_at', $today)->count();
+        $usersToday = User::whereDate('created_at', $today)->count();
+        $salesThisMonth = Pembelian::whereMonth('created_at', $thisMonth)->count();
+        $usersThisMonth = User::whereMonth('created_at', $thisMonth)->count();
+
+        $totalRevenueToday = Pembelian::whereDate('created_at', $today)->sum('total_harga');
+        $totalRevenueThisMonth = Pembelian::whereMonth('created_at', $thisMonth)->sum('total_harga');
+
+        return view('adminHome', compact(
+            'salesToday', 'usersToday', 'salesThisMonth', 'usersThisMonth',
+            'totalRevenueToday', 'totalRevenueThisMonth'
+        ));
     }
     
     public function user() {
@@ -45,6 +75,25 @@ class homecontroller extends controller
 
         return view('home', compact('cartCount'));
     }
+
+    // public function superadminDashboard()
+    // {
+    //     $today = Carbon::today();
+    //     $thisMonth = Carbon::now()->month;
+
+    //     $salesToday = Pembelian::whereDate('created_at', $today)->count();
+    //     $usersToday = User::whereDate('created_at', $today)->count();
+    //     $salesThisMonth = Pembelian::whereMonth('created_at', $thisMonth)->count();
+    //     $usersThisMonth = User::whereMonth('created_at', $thisMonth)->count();
+
+    //     $totalRevenueToday = Pembelian::whereDate('created_at', $today)->sum('total_harga');
+    //     $totalRevenueThisMonth = Pembelian::whereMonth('created_at', $thisMonth)->sum('total_harga');
+
+    //     return view('adminHome', compact(
+    //         'salesToday', 'usersToday', 'salesThisMonth', 'usersThisMonth',
+    //         'totalRevenueToday', 'totalRevenueThisMonth'
+    //     ));
+    // }
     
     public function manageUser() {
         $users = User::all();
