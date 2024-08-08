@@ -278,6 +278,9 @@ class PembelianController extends Controller
             $pembelian->save();
         }
     }
+
+    
+
     /**
      * Update the specified resource in storage.
      */

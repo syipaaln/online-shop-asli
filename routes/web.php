@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PembelianController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\InvoiceController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
@@ -55,6 +56,7 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::post('/user/payment/process', [PembelianController::class, 'paymentProcess'])->name('paymentProcess');
     Route::get('/user/payment/bill', [PembelianController::class, 'paymentBill'])->name('paymentBill');
     Route::get('/user/history/{id}', [PembelianController::class, 'getUserHistory'])->name('user.history');
+    Route::get('/user/invoice/generate/{id}', [InvoiceController::class, 'generateInvoice'])->name('invoice.generate');
 });
 
 
