@@ -9,7 +9,7 @@ use App\Models\Pembelian;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-class homecontroller extends controller
+class HomeController extends controller
 {
     /**
      * Create a new controller instance.

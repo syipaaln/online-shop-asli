@@ -55,7 +55,5 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::post('/user/payment/process', [PembelianController::class, 'paymentProcess'])->name('paymentProcess');
     Route::get('/user/payment/bill', [PembelianController::class, 'paymentBill'])->name('paymentBill');
     Route::get('/user/history/{id}', [PembelianController::class, 'getUserHistory'])->name('user.history');
-    Route::get('/user/invoice/generate/{id}', [InvoiceController::class, 'generateInvoice'])->name('invoice.generate');
+    Route::get('/user/history/invoice/{date}', [PembelianController::class, 'generateInvoice'])->name('generateInvoice');
 });
-
-

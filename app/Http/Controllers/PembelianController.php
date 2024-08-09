@@ -9,6 +9,8 @@ use App\Models\History;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; // Import Facade untuk Auth
 use Illuminate\Support\Facades\Log;
+// use Barryvdh\DomPDF\Facade\Pdf;
+use PDF;
 
 class PembelianController extends Controller
 {
@@ -210,13 +212,41 @@ class PembelianController extends Controller
     public function getUserHistory()
     {
         $userId = Auth::id();
-           
-        $history = History::where('user_id', $userId)
+        
+        $histories = History::where('user_id', $userId)
             ->orderBy('created_at', 'desc')
+            ->get()
+            ->groupBy('created_at'); // Kelompokkan berdasarkan tanggal transaksi
+                
+        $groupedHistories = $histories->map(function ($group) {
+            $totalPrice = $group->sum('price');
+            return [
+                'products' => $group,
+                'total_price' => $totalPrice,
+                'date' => $group->first()->created_at
+            ];
+        });
+        
+        return view('user.history', ['groupedHistories' => $groupedHistories]);
+    }
+
+    public function generateInvoice($date)
+    {
+        $userId = Auth::id();
+        
+        // Ambil riwayat transaksi berdasarkan tanggal
+        $histories = History::where('user_id', $userId)
+            ->where('created_at', $date)
             ->get();
 
-        // dd($history);
-        return view('user.history', ['histories' => $history]);
+        if ($histories->isEmpty()) {
+            return redirect()->route('user.history', ['id' => $userId])->with('error', 'No transaction found for this date.');
+        }
+
+        $totalPrice = $histories->sum('price');
+        $pdf = PDF::loadView('user.invoice', compact('histories', 'totalPrice', 'date'));
+        
+        return $pdf->download('invoice_' . str_replace([' ', ':'], '_', $date) . '.pdf');
     }
 
     public function salesReport()
