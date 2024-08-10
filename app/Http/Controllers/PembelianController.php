@@ -177,6 +177,11 @@ class PembelianController extends Controller
             
             // Hitung total harga pembelian
             $total = $checkout->quantity * $product->price + 20000;
+
+            // Validasi input payment
+            $request->validate([
+                'payment' => 'required|string',
+            ]);
             
             // Simpan data pembelian ke dalam tabel Pembelian
             $pembelian = new Pembelian();
@@ -186,7 +191,7 @@ class PembelianController extends Controller
             $pembelian->checkout_id = $checkout->id;
             $pembelian->total_harga = $total; // Sesuaikan dengan perhitungan total harga yang Anda inginkan
             $pembelian->status = 'pending';
-            $pembelian->payment_type = $request->input('payment');
+            $pembelian->payment_type = $request->input('payment'); // Ambil nilai payment dari request
             // Tambahan field lainnya sesuai kebutuhan
 
             // Simpan data pembelian ke dalam database

@@ -43,8 +43,8 @@
                                                                    background: none; 
                                                                    appearance: none; 
                                                                    padding: 0;" />
-                                                        <div class="quantity-button me-1" onclick="updateQuantity({{ $checkout->id }}, 1)">
-                                                            <i class="bi bi-plus-circle" ></i>
+                                                        <div class="quantity-button me-1" style="margin-left: 2px; padding: 0;" onclick="updateQuantity({{ $checkout->id }}, 1)">
+                                                            <i class="bi bi-plus-circle"></i>
                                                         </div>
                                                     </div>                                                    
                                                 </form>

@@ -16,6 +16,11 @@
         <div class="mt-4">
           Total Yang Belum Dibayar : Rp{{ $total_bayar }}
         </div>
+        @foreach ($pembelian as $pembelian)
+          <a href="{{ route('generateInvoice', $pembelian->id) }}">
+              <button class="btn btn-success">Download PDF</button>
+          </a>
+        @endforeach
       </div>
   </div>
 </div>

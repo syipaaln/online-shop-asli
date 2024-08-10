@@ -74,7 +74,7 @@
             <tr>
                 <th>No</th>
                 <th>Product ID</th>
-                {{-- <th class="center-align">Quantity</th> --}}
+                <th class="center-align">Quantity</th>
                 <th class="right-align">Total Price</th>
             </tr>
         </thead>
@@ -83,7 +83,7 @@
                 <tr>
                     <td class="center-align">{{$history->id}}</td>
                     <td>{{ $history->product_id }}</td>
-                    {{-- <td class="center-align">{{ $history->quantity }}</td> --}}
+                    <td class="center-align">{{ $history->checkout_id }}</td>
                     <td class="right-align">{{ number_format($history->price, 0, ',', '.') }}</td>
                 </tr>
             @endforeach
