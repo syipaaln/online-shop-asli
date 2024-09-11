@@ -8,6 +8,13 @@
                     {{ session('error') }}
                 </div>
             @endif
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </div>
+            @endif
             <div class="col-md-12">
                 <form id="paymentForm" action="{{ route('paymentProcess') }}" method="POST">
                     @csrf

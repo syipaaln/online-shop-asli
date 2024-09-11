@@ -14,4 +14,8 @@ class Pembelian extends Model
         return $this->belongsTo(Product::class);
     }
 
+    public function history()
+    {
+        return $this->hasOne(History::class);
+    }
 }

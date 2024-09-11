@@ -15,7 +15,16 @@ class History extends Model
         'user_id',
         'product_id',
         'checkout_id',
+        'pembelian_id',
         'price',
     ];
 
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+    public function pembelian()
+    {
+        return $this->belongsTo(Pembelian::class);
+    }
 }

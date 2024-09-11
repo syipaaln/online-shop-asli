@@ -21,6 +21,7 @@
         }
         p {
             font-size: 14px;
+            text-align: right;
         }
         table {
             width: 100%;
@@ -53,14 +54,10 @@
             margin-top: 20px; 
             font-size: 18px;
         }
-        .date{
-            text-align: right;
-        }
         .dashed-divider {
             border-top: dashed black; 
             width: fit-content;
             margin: 10px auto 20px auto;
-
         }
     </style>
 </head>
@@ -68,29 +65,38 @@
     <div class="logo">
         <img src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('images/logo.png'))) }}" alt="Logo">
     </div>
-    <p class="date">Date: {{ $date }}</p>
+    @if($histories->isNotEmpty())
+        @php
+            $history = $histories->first();
+        @endphp
+        <p>No: {{$history->id}}</p>
+        <p class="date">Date: {{ \Carbon\Carbon::parse($date)->format('Y-m-d') }}</p>
+    @else
+        <p>No history available</p>
+        <p class="date">Date: {{ \Carbon\Carbon::parse($date)->format('Y-m-d') }}</p>
+    @endif
     <table>
         <thead>
             <tr>
                 <th>No</th>
-                <th>Product ID</th>
-                <th class="center-align">Quantity</th>
-                <th class="right-align">Total Price</th>
+                <th>Nama Produk</th>
+                <th class="center-align">Jumlah</th>
+                <th class="right-align">Total Harga</th>
             </tr>
         </thead>
         <tbody>
             @foreach($histories as $history)
                 <tr>
-                    <td class="center-align">{{$history->id}}</td>
-                    <td>{{ $history->product_id }}</td>
-                    <td class="center-align">{{ $history->checkout_id }}</td>
-                    <td class="right-align">{{ number_format($history->price, 0, ',', '.') }}</td>
+                    <td class="center-align">{{$loop->iteration}}</td>
+                    <td>{{ $history->product->title ?? 'Produk tidak ditemukan' }}</td>
+                    <td class="center-align">{{ $history->pembelian->quantity ?? 'Data tidak ditemukan' }}</td>
+                    <td class="right-align">Rp {{ number_format($history->price, 0, ',', '.') }}</td>
                 </tr>
             @endforeach
         </tbody>
     </table>
     <div class="dashed-divider"></div>
-    <p class="total-price">Total Price: {{ number_format($totalPrice, 0, ',', '.') }}</p>
-    <h4 class="text-center"> THANK YOU FOR YOUR VISIT </h4>
+    <p class="total-price">Total Harga: Rp {{ number_format($totalPrice, 0, ',', '.') }}</p>
+    <h4 class="text-center"> TERIMA KASIH </h4>
 </body>
 </html>

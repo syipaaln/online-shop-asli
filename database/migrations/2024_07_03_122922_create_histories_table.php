@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('checkout_id');
+            $table->unsignedBigInteger('pembelian_id');
             $table->bigInteger('price');
             $table->timestamps();
         });

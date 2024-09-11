@@ -26,6 +26,11 @@ class Product extends Model
     {
         return $this->hasMany(Checkout::class);
     }
+    
+    public function history()
+    {
+        return $this->hasMany(History::class);
+    }
 
     public function pembelians()
     {

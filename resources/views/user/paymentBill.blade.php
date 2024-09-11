@@ -4,7 +4,7 @@
 <div class="container">
   <div>
       @if(session('success'))
-          <div class="alert alert-succes">
+          <div class="alert alert-success">
               {{ session('success') }}
           </div>
       @endif
@@ -16,11 +16,14 @@
         <div class="mt-4">
           Total Yang Belum Dibayar : Rp{{ $total_bayar }}
         </div>
-        @foreach ($pembelian as $pembelian)
-          <a href="{{ route('generateInvoice', $pembelian->id) }}">
-              <button class="btn btn-success">Download PDF</button>
+        @if ($pembelian->isNotEmpty())
+          <a href="{{ route('generateInvoice', $pembelian->last()->created_at) }}">
+              <button class="btn btn-success mt-2">Cetak Struk</button>
           </a>
-        @endforeach
+        @endif
+        <a href="{{ route('getUserHistory') }}">
+          <button class="btn btn-success mt-2">Halaman History</button>
+        </a>
       </div>
   </div>
 </div>

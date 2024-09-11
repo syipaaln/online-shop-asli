@@ -180,7 +180,9 @@ class PembelianController extends Controller
 
             // Validasi input payment
             $request->validate([
-                'payment' => 'required|string',
+                'payment' => 'required',
+            ], [
+                'payment.required' => 'Silakan pilih metode pembayaran.',
             ]);
             
             // Simpan data pembelian ke dalam tabel Pembelian
@@ -202,6 +204,7 @@ class PembelianController extends Controller
             $history->user_id = $userId;
             $history->product_id = $checkout->product_id;
             $history->checkout_id = $checkout->id;
+            $history->pembelian_id = $pembelian->id;
             $history->price = $total;
             // dd($history);
             $history->save();
